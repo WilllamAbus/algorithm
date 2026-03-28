@@ -1,43 +1,21 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-class Solution {
-public:
-    bool judgeCircle(string moves) {
-        int x = 0;
-        int y = 0;
+bool judgeCircle(string moves) {
+    int x = 0, y = 0;
 
-        for (char move : moves) {
-
-            if (move == 'U')
-                y++;
-            else if (move == 'D')
-                y--;
-            else if (move == 'R')
-                x++;
-            else
-                x--;
-        }
-
-        return x == 0 && y == 0;
+    for (char c : moves) {
+        if (c == 'U') y++;
+        else if (c == 'D') y--;
+        else if (c == 'R') x++;
+        else if (c == 'L') x--;
     }
-};
 
-int main() {
+    return x == 0 && y == 0;
+}
 
-    Solution sol;
-
-    // Example 1
-    string moves1 = "UD";
-    cout << "Example 1: ";
-    cout << (sol.judgeCircle(moves1) ? "true" : "false") << endl;
-
-    // Example 2
-    string moves2 = "LL";
-    cout << "Example 2: ";
-    cout << (sol.judgeCircle(moves2) ? "true" : "false") << endl;
-
-    return 0;
+void run_circle() {
+    cout << (judgeCircle("UD") ? "true" : "false") << endl;
+    cout << (judgeCircle("LL") ? "true" : "false") << endl;
 }
