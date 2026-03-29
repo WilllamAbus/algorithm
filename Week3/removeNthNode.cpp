@@ -1,14 +1,9 @@
+#include "utils/list_utils.h"
 #include <iostream>
 #include <vector>
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
-
-// ================= SOLUTION =================
+// ===== SOLUTION =====
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -18,68 +13,32 @@ public:
         ListNode* slow = &dummy;
         ListNode* fast = &dummy;
 
-        // tạo gap n
+        // move fast trước n bước
         for (int i = 0; i < n; i++) {
             fast = fast->next;
         }
 
-        // chạy cùng nhau
+        // giữ khoảng cách n
         while (fast->next) {
             slow = slow->next;
             fast = fast->next;
         }
 
-        // delete node
+        // xóa node
         ListNode* target = slow->next;
         slow->next = target->next;
 
         delete target;
-
         return dummy.next;
     }
 };
 
-// ================= HELPER =================
-
-// build linked list từ vector
-ListNode* buildList(const vector<int>& v) {
-    ListNode dummy(0);
-    ListNode* tail = &dummy;
-
-    for (int x : v) {
-        tail->next = new ListNode(x);
-        tail = tail->next;
-    }
-
-    return dummy.next;
-}
-
-// in linked list
-void printList(ListNode* head) {
-    cout << "[";
-    while (head) {
-        cout << head->val;
-        if (head->next) cout << ",";
-        head = head->next;
-    }
-    cout << "]\n";
-}
-
-// free memory
-void freeList(ListNode* head) {
-    while (head) {
-        ListNode* tmp = head;
-        head = head->next;
-        delete tmp;
-    }
-}
-
-// ================= MAIN =================
-
-int main() {
+// ===== RUN =====
+void runRemoveNth() {
     Solution sol;
 
-    // ===== Example 1 =====
+    cout << "RESULT:\n";
+
     {
         vector<int> v = {1,2,3,4,5};
         int n = 2;
@@ -87,13 +46,12 @@ int main() {
         ListNode* head = buildList(v);
         head = sol.removeNthFromEnd(head, n);
 
-        cout << "Example 1 Output: ";
-        printList(head); // [1,2,3,5]
+        cout << "Output 1: ";
+        printList(head);
 
         freeList(head);
     }
 
-    // ===== Example 2 =====
     {
         vector<int> v = {1};
         int n = 1;
@@ -101,13 +59,12 @@ int main() {
         ListNode* head = buildList(v);
         head = sol.removeNthFromEnd(head, n);
 
-        cout << "Example 2 Output: ";
-        printList(head); // []
+        cout << "Output 2: ";
+        printList(head);
 
         freeList(head);
     }
 
-    // ===== Example 3 =====
     {
         vector<int> v = {1,2};
         int n = 1;
@@ -115,11 +72,9 @@ int main() {
         ListNode* head = buildList(v);
         head = sol.removeNthFromEnd(head, n);
 
-        cout << "Example 3 Output: ";
-        printList(head); // [1]
+        cout << "Output 3: ";
+        printList(head);
 
         freeList(head);
     }
-
-    return 0;
 }

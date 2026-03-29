@@ -6,51 +6,34 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n = nums.size();
+        long long expect = 1LL * n * (n + 1) / 2;
 
-        long long expected = 1LL * n * (n + 1) / 2;
-        long long actual = 0;
+        long long sum = 0;
+        for (int x : nums) sum += x;
 
-        for (int x : nums) {
-            actual += x;
-        }
-
-        return (int)(expected - actual);
+        return (int)(expect - sum);
     }
 };
 
-// helper để in vector (debug visibility)
-void printVector(const vector<int>& nums) {
-    cout << "[";
-    for (int i = 0; i < nums.size(); i++) {
-        cout << nums[i];
-        if (i != nums.size() - 1) cout << ",";
-    }
-    cout << "]";
-}
-
-int main() {
+void runMissingNumber() {
     Solution sol;
 
-    // Example 1
-    vector<int> nums1 = {3, 0, 1};
-    cout << "Input: ";
-    printVector(nums1);
-    cout << "\nOutput: " << sol.missingNumber(nums1) << endl;
-    cout << "Expected: 2\n\n";
+    cout << "RESULT:\n";
 
-    // Example 2
-    vector<int> nums2 = {0, 1};
-    cout << "Input: ";
-    printVector(nums2);
-    cout << "\nOutput: " << sol.missingNumber(nums2) << endl;
-    cout << "Expected: 2\n\n";
+    {
+        vector<int> v = {3,0,1};
+        cout << sol.missingNumber(v) << "\n";
+    }
 
-    // Example 3
-    vector<int> nums3 = {9,6,4,2,3,5,7,0,1};
-    cout << "Input: ";
-    printVector(nums3);
-    cout << "\nOutput: " << sol.missingNumber(nums3) << endl;
-    cout << "Expected: 8\n\n";
+    {
+        vector<int> v = {0,1};
+        cout << sol.missingNumber(v) << "\n";
+    }
 
-    return 0;
+    {
+        vector<int> v = {9,6,4,2,3,5,7,0,1};
+        cout << sol.missingNumber(v) << "\n";
+    }
+
+    cout << "\n";
 }

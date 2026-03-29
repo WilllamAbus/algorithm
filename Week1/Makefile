@@ -16,7 +16,21 @@ SRCS = mainW1.cpp \
        validParenthese.cpp
 OBJS = $(SRCS:.cpp=.o)
 
+
+
 all: $(TARGET)
+
+run: $(TARGET)
+	./$(TARGET) check
+	./$(TARGET) diff
+	./$(TARGET) anagram
+	./$(TARGET) kids
+	./$(TARGET) longest
+	./$(TARGET) avg
+	./$(TARGET) merge
+	./$(TARGET) ransom
+	./$(TARGET) circle
+	./$(TARGET) valid
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)

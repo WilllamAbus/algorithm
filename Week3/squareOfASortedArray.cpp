@@ -1,66 +1,52 @@
+#include "utils/vector_utils.h"
 #include <iostream>
 #include <vector>
 using namespace std;
 
+// ===== SOLUTION =====
 class Solution {
 public:
     vector<int> sortedSquares(const vector<int>& nums) {
         int n = nums.size();
         vector<int> res(n);
 
-        int l = 0;
-        int r = n - 1;
-        int k = n - 1;
+        int l = 0, r = n - 1, k = n - 1;
 
         while (l <= r) {
-            int left_sq = nums[l] * nums[l];
-            int right_sq = nums[r] * nums[r];
+            int left = nums[l] * nums[l];
+            int right = nums[r] * nums[r];
 
-            if (left_sq > right_sq) {
-                res[k--] = left_sq;
+            if (left > right) {
+                res[k--] = left;
                 l++;
             } else {
-                res[k--] = right_sq;
+                res[k--] = right;
                 r--;
             }
         }
-
         return res;
     }
 };
 
-// in vector (production-safe: không dư dấu phẩy)
-void printVector(const vector<int>& v) {
-    cout << "[";
-    for (size_t i = 0; i < v.size(); ++i) {
-        cout << v[i];
-        if (i != v.size() - 1) cout << ",";
-    }
-    cout << "]\n";
-}
-
-int main() {
+// ===== RUN =====
+void runSortedSquares() {
     Solution sol;
 
-    // Example 1
-    vector<int> nums1 = {-4, -1, 0, 3, 10};
-    vector<int> res1 = sol.sortedSquares(nums1);
+    cout << "RESULT:\n";
 
-    cout << "Input 1: ";
-    printVector(nums1);
+    {
+        vector<int> nums = {-4,-1,0,3,10};
+        vector<int> res = sol.sortedSquares(nums);
 
-    cout << "Output 1: ";
-    printVector(res1);
+        cout << "Output 1: ";
+        printVector(res);
+    }
 
-    // Example 2
-    vector<int> nums2 = {-7, -3, 2, 3, 11};
-    vector<int> res2 = sol.sortedSquares(nums2);
+    {
+        vector<int> nums = {-7,-3,2,3,11};
+        vector<int> res = sol.sortedSquares(nums);
 
-    cout << "Input 2: ";
-    printVector(nums2);
-
-    cout << "Output 2: ";
-    printVector(res2);
-
-    return 0;
+        cout << "Output 2: ";
+        printVector(res);
+    }
 }

@@ -6,8 +6,7 @@ using namespace std;
 
 class MyQueue {
 private:
-    stack<int> inStack;
-    stack<int> outStack;
+    stack<int> inStack, outStack;
 
     void shift() {
         if (outStack.empty()) {
@@ -19,9 +18,7 @@ private:
     }
 
 public:
-    void push(int x) {
-        inStack.push(x);
-    }
+    void push(int x) { inStack.push(x); }
 
     int pop() {
         shift();
@@ -40,37 +37,21 @@ public:
     }
 };
 
-int main() {
-    MyQueue myQueue;
-    vector<string> output;
+void runQueue() {
+    MyQueue q;
+    vector<string> out;
 
-    // MyQueue()
-    output.push_back("null");
+    out.push_back("null");
+    q.push(1); out.push_back("null");
+    q.push(2); out.push_back("null");
+    out.push_back(to_string(q.peek()));
+    out.push_back(to_string(q.pop()));
+    out.push_back(q.empty() ? "true" : "false");
 
-    // push(1)
-    myQueue.push(1);
-    output.push_back("null");
-
-    // push(2)
-    myQueue.push(2);
-    output.push_back("null");
-
-    // peek()
-    output.push_back(to_string(myQueue.peek()));
-
-    // pop()
-    output.push_back(to_string(myQueue.pop()));
-
-    // empty()
-    output.push_back(myQueue.empty() ? "true" : "false");
-
-    // in ra đúng format LeetCode
-    cout << "[";
-    for (int i = 0; i < output.size(); i++) {
-        cout << output[i];
-        if (i != output.size() - 1) cout << ", ";
+    cout << "[ALGO] queue_stack\nRESULT: [";
+    for (size_t i = 0; i < out.size(); ++i) {
+        cout << out[i];
+        if (i + 1 < out.size()) cout << ", ";
     }
-    cout << "]" << endl;
-
-    return 0;
+    cout << "]\n\n";
 }

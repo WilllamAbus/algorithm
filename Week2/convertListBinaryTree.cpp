@@ -1,119 +1,61 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-/*========================
-  Definition Linked List
-=========================*/
 struct ListNode {
     int val;
     ListNode* next;
-
-    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x): val(x), next(nullptr) {}
 };
 
-/*========================
-  Definition Tree Node
-=========================*/
 struct TreeNode {
     int val;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode *left, *right;
+    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
 };
 
-/*========================
-        Solution
-=========================*/
-class Solution {
-public:
-
-    ListNode* findMid(ListNode* head) {
-
-        ListNode* prev = nullptr;
-        ListNode* slow = head;
-        ListNode* fast = head;
-
-        while (fast && fast->next) {
-
-            prev = slow;
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        if (prev)
-            prev->next = nullptr;
-
-        return slow;
+ListNode* build(vector<int>& a) {
+    ListNode* h = new ListNode(a[0]);
+    ListNode* cur = h;
+    size_t n = a.size();
+    for (size_t i = 1; i < n; ++i) {
+        cur->next = new ListNode(a[i]);
+        cur = cur->next;
     }
-
-    TreeNode* sortedListToBST(ListNode* head) {
-
-        if (!head) return nullptr;
-
-        if (!head->next)
-            return new TreeNode(head->val);
-
-        ListNode* mid = findMid(head);
-
-        TreeNode* root = new TreeNode(mid->val);
-
-        root->left = sortedListToBST(head);
-        root->right = sortedListToBST(mid->next);
-
-        return root;
-    }
-};
-
-/*========================
-   Helper: build list
-=========================*/
-ListNode* buildList(vector<int> nums) {
-
-    if(nums.empty()) return nullptr;
-
-    ListNode* head = new ListNode(nums[0]);
-    ListNode* curr = head;
-
-    for(int i = 1; i < nums.size(); i++) {
-        curr->next = new ListNode(nums[i]);
-        curr = curr->next;
-    }
-
-    return head;
+    return h;
 }
 
-/*========================
-   Print BST (inorder)
-=========================*/
-void inorder(TreeNode* root) {
-
-    if(!root) return;
-
-    inorder(root->left);
-    cout << root->val << " ";
-    inorder(root->right);
+void inorder(TreeNode* r) {
+    if (!r) return;
+    inorder(r->left);
+    cout << r->val << " ";
+    inorder(r->right);
 }
 
-/*========================
-          main
-=========================*/
-int main() {
+TreeNode* solve(ListNode* h) {
+    if (!h) return nullptr;
+    if (!h->next) return new TreeNode(h->val);
 
-    vector<int> nums = {-10,-3,0,5,9};
+    ListNode *slow=h, *fast=h, *prev=nullptr;
+    while (fast && fast->next) {
+        prev=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    if (prev) prev->next=nullptr;
 
-    ListNode* head = buildList(nums);
+    TreeNode* root = new TreeNode(slow->val);
+    root->left = solve(h);
+    root->right = solve(slow->next);
 
-    Solution sol;
+    return root;
+}
 
-    TreeNode* root = sol.sortedListToBST(head);
+void run_bst() {
+    vector<int> a = {-10,-3,0,5,9};
+    ListNode* h = build(a);
+    TreeNode* r = solve(h);
 
-    cout << "Inorder traversal of BST:" << endl;
-    inorder(root);
-
-    cout << endl;
-
-    return 0;
+    inorder(r);
+    cout << "\n";
 }

@@ -1,12 +1,7 @@
+#include "utils/list_utils.h"
 #include <iostream>
 #include <vector>
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
 
 // ===== SOLUTION =====
 class Solution {
@@ -29,7 +24,7 @@ public:
             head = head->next;
         }
 
-        // critical: tránh cycle
+        // tránh cycle
         greater->next = nullptr;
 
         // nối 2 list
@@ -39,67 +34,35 @@ public:
     }
 };
 
-// ===== HELPER =====
-
-// build linked list từ vector
-ListNode* buildList(const vector<int>& vals) {
-    ListNode dummy(0);
-    ListNode* tail = &dummy;
-
-    for (int v : vals) {
-        tail->next = new ListNode(v);
-        tail = tail->next;
-    }
-    return dummy.next;
-}
-
-// in list theo format LeetCode
-void printList(ListNode* head) {
-    cout << "[";
-    while (head) {
-        cout << head->val;
-        if (head->next) cout << ",";
-        head = head->next;
-    }
-    cout << "]\n";
-}
-
-// free memory (production mindset)
-void freeList(ListNode* head) {
-    while (head) {
-        ListNode* tmp = head;
-        head = head->next;
-        delete tmp;
-    }
-}
-
-// ===== MAIN =====
-int main() {
+// ===== RUN =====
+void runPartition() {
     Solution sol;
 
-    // ===== Example 1 =====
-    vector<int> input1 = {1,4,3,2,5,2};
-    int x1 = 3;
+    cout << "RESULT:\n";
 
-    ListNode* head1 = buildList(input1);
-    ListNode* result1 = sol.partition(head1, x1);
+    {
+        vector<int> input = {1,4,3,2,5,2};
+        int x = 3;
 
-    cout << "Output 1: ";
-    printList(result1);  // expected: [1,2,2,4,3,5]
+        ListNode* head = buildList(input);
+        ListNode* result = sol.partition(head, x);
 
-    freeList(result1);
+        cout << "Output 1: ";
+        printList(result);
 
-    // ===== Example 2 =====
-    vector<int> input2 = {2,1};
-    int x2 = 2;
+        freeList(result);
+    }
 
-    ListNode* head2 = buildList(input2);
-    ListNode* result2 = sol.partition(head2, x2);
+    {
+        vector<int> input = {2,1};
+        int x = 2;
 
-    cout << "Output 2: ";
-    printList(result2);  // expected: [1,2]
+        ListNode* head = buildList(input);
+        ListNode* result = sol.partition(head, x);
 
-    freeList(result2);
+        cout << "Output 2: ";
+        printList(result);
 
-    return 0;
+        freeList(result);
+    }
 }

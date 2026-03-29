@@ -4,7 +4,7 @@ using namespace std;
 
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode(int x) : val(x), next(nullptr) {}
 };
 
@@ -18,94 +18,69 @@ public:
         ListNode* curr = head;
 
         while (curr) {
-            if (curr->val == val) {
+            if (curr->val == val)
                 prev->next = curr->next;
-            } else {
+            else
                 prev = curr;
-            }
             curr = curr->next;
         }
-
         return dummy.next;
     }
 };
 
-/// Build linked list từ vector
-ListNode* buildList(const vector<int>& arr) {
+ListNode* build(const vector<int>& a) {
     ListNode dummy(0);
-    ListNode* tail = &dummy;
-
-    for (int x : arr) {
-        tail->next = new ListNode(x);
-        tail = tail->next;
+    ListNode* t = &dummy;
+    for (int x : a) {
+        t->next = new ListNode(x);
+        t = t->next;
     }
     return dummy.next;
 }
 
-/// In linked list theo format [1,2,3]
-void printList(ListNode* head) {
+void print(ListNode* h) {
     cout << "[";
-    while (head) {
-        cout << head->val;
-        if (head->next) cout << ",";
-        head = head->next;
+    while (h) {
+        cout << h->val;
+        if (h->next) cout << ",";
+        h = h->next;
     }
-    cout << "]\n";
+    cout << "]";
 }
 
-/// Free memory (quan trọng nếu scale lớn)
-void freeList(ListNode* head) {
-    while (head) {
-        ListNode* tmp = head;
-        head = head->next;
-        delete tmp;
+void freeList(ListNode* h) {
+    while (h) {
+        auto t = h;
+        h = h->next;
+        delete t;
     }
 }
 
-int main() {
+void runRemoveElements() {
     Solution sol;
 
-    // ===== Example 1 =====
+    cout << "[ALGO] remove_elements\nRESULT:\n";
+
     {
-        vector<int> input = {1,2,6,3,4,5,6};
-        int val = 6;
-
-        ListNode* head = buildList(input);
-        ListNode* result = sol.removeElements(head, val);
-
-        cout << "Example 1 Output: ";
-        printList(result);  // [1,2,3,4,5]
-
-        freeList(result);
+        auto h = build({1,2,6,3,4,5,6});
+        auto r = sol.removeElements(h, 6);
+        print(r); cout << "\n";
+        freeList(r);
     }
 
-    // ===== Example 2 =====
     {
-        vector<int> input = {};  // empty list
-        int val = 1;
-
-        ListNode* head = buildList(input);
-        ListNode* result = sol.removeElements(head, val);
-
-        cout << "Example 2 Output: ";
-        printList(result);  // []
-
-        freeList(result);
+        auto h = build({});
+        auto r = sol.removeElements(h, 1);
+        print(r); cout << "\n";
+        freeList(r);
     }
 
-    // ===== Example 3 =====
     {
-        vector<int> input = {7,7,7,7};
-        int val = 7;
-
-        ListNode* head = buildList(input);
-        ListNode* result = sol.removeElements(head, val);
-
-        cout << "Example 3 Output: ";
-        printList(result);  // []
-
-        freeList(result);
+        auto h = build({7,7,7});
+        auto r = sol.removeElements(h, 7);
+        print(r); cout << "\n";
+        freeList(r);
     }
 
-    return 0;
+    cout << "\n";
 }

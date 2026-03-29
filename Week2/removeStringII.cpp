@@ -1,60 +1,38 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
 class Solution {
 public:
     string removeDuplicates(string s, int k) {
-        vector<pair<char, int>> st;
+        vector<pair<char,int>> st;
         st.reserve(s.size());
 
         for (char c : s) {
             if (!st.empty() && st.back().first == c) {
-                st.back().second++;
-                if (st.back().second == k) {
-                    st.pop_back(); // rollback
-                }
+                if (++st.back().second == k)
+                    st.pop_back();
             } else {
-                st.emplace_back(c, 1);
+                st.emplace_back(c,1);
             }
         }
 
-        string result;
-        result.reserve(s.size());
+        string res;
+        res.reserve(s.size());
 
-        for (auto &[ch, cnt] : st) {
-            result.append(cnt, ch);
-        }
+        for (auto &p : st)
+            res.append(p.second, p.first);
 
-        return result;
+        return res;
     }
 };
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+void runRemoveDuplicates() {
     Solution sol;
 
-    // Example 1
-    {
-        string s = "abcd";
-        int k = 2;
-        cout << sol.removeDuplicates(s, k) << "\n"; // abcd
-    }
-
-    // Example 2
-    {
-        string s = "deeedbbcccbdaa";
-        int k = 3;
-        cout << sol.removeDuplicates(s, k) << "\n"; // aa
-    }
-
-    // Example 3
-    {
-        string s = "pbbcggttciiippooaais";
-        int k = 2;
-        cout << sol.removeDuplicates(s, k) << "\n"; // ps
-    }
-
-    return 0;
+    cout << "[ALGO] remove_duplicates\nRESULT:\n";
+    cout << sol.removeDuplicates("abcd",2) << "\n";
+    cout << sol.removeDuplicates("deeedbbcccbdaa",3) << "\n";
+    cout << sol.removeDuplicates("pbbcggttciiippooaais",2) << "\n\n";
 }

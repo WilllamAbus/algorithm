@@ -6,60 +6,43 @@ using namespace std;
 
 class MyStack {
 private:
-    queue<int> q1;
-    queue<int> q2;
+    queue<int> q;
 
 public:
-    MyStack() {}
-
     void push(int x) {
-        q2.push(x);
-        while (!q1.empty()) {
-            q2.push(q1.front());
-            q1.pop();
+        q.push(x);
+        for (size_t i = 0; i + 1 < q.size(); ++i) {
+            q.push(q.front());
+            q.pop();
         }
-        swap(q1, q2);
     }
 
     int pop() {
-        int val = q1.front();
-        q1.pop();
+        int val = q.front();
+        q.pop();
         return val;
     }
 
-    int top() {
-        return q1.front();
-    }
+    int top() { return q.front(); }
 
-    bool empty() {
-        return q1.empty();
-    }
+    bool empty() { return q.empty(); }
 };
 
-int main() {
-    vector<string> output;
+void runStack() {
+    MyStack s;
+    vector<string> out;
 
-    MyStack* myStack = new MyStack();
-    output.push_back("null"); // constructor
+    out.push_back("null");
+    s.push(1); out.push_back("null");
+    s.push(2); out.push_back("null");
+    out.push_back(to_string(s.top()));
+    out.push_back(to_string(s.pop()));
+    out.push_back(s.empty() ? "true" : "false");
 
-    myStack->push(1);
-    output.push_back("null");
-
-    myStack->push(2);
-    output.push_back("null");
-
-    output.push_back(to_string(myStack->top()));   // 2
-    output.push_back(to_string(myStack->pop()));   // 2
-    output.push_back(myStack->empty() ? "true" : "false");
-
-    // print format giống LeetCode
-    cout << "[";
-    for (int i = 0; i < output.size(); i++) {
-        cout << output[i];
-        if (i != output.size() - 1) cout << ", ";
+    cout << "[ALGO] stack_queue\nRESULT: [";
+    for (size_t i = 0; i < out.size(); ++i) {
+        cout << out[i];
+        if (i + 1 < out.size()) cout << ", ";
     }
-    cout << "]" << endl;
-
-    delete myStack;
-    return 0;
+    cout << "]\n\n";
 }
