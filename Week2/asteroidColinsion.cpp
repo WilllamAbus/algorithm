@@ -39,7 +39,7 @@ void printVec(const vector<int>& v) {
     cout << "]\n";
 }
 
-void run_asteroid() {
+void runAsteroid() {
     vector<vector<int>> tests = {
         {5,10,-5}, {8,-8}, {10,2,-5}
     };

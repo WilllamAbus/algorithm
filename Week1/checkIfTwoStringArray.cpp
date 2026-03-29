@@ -30,7 +30,7 @@ bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
     return i == word1.size() && j == word2.size();
 }
 
-void run_check_strings() {
+void runCheckStrings() {
     vector<string> w1 = {"ab", "c"};
     vector<string> w2 = {"a", "bc"};
 

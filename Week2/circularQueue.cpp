@@ -27,7 +27,7 @@ public:
     int Rear() { return size ? buf[(head + size - 1) % cap] : -1; }
 };
 
-void run_queue() {
+void runCircularQueue() {
     MyCircularQueue q(3);
 
     cout << q.enQueue(1) << " ";

@@ -15,7 +15,7 @@ bool judgeCircle(string moves) {
     return x == 0 && y == 0;
 }
 
-void run_circle() {
+void runCircle() {
     cout << (judgeCircle("UD") ? "true" : "false") << endl;
     cout << (judgeCircle("LL") ? "true" : "false") << endl;
 }

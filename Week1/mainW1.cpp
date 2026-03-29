@@ -6,32 +6,32 @@
 using namespace std;
 
 // forward declarations
-void run_check_strings();
-void run_find_diff();
-void run_group_anagram();
-void run_kids();
-void run_longest();
-void run_avg();
-void run_merge();
+void runCheckStrings();
+void runFindDiff();
+void runGroupAnagram();
+void runKids();
+void runLongest();
+void runAvg();
+void runMerge();
 
-void run_ransom();
-void run_circle();
-void run_valid();
+void runRansom();
+void runCircle();
+void runValid();
 
 int main(int argc, char* argv[]) {
 
     unordered_map<string, function<void()>> registry = {
-        {"check", run_check_strings},
-        {"diff", run_find_diff},
-        {"anagram", run_group_anagram},
-        {"kids", run_kids},
-        {"longest", run_longest},
-        {"avg", run_avg},
-        {"merge", run_merge},
+        {"check", runCheckStrings},
+        {"diff", runFindDiff},
+        {"anagram", runGroupAnagram},
+        {"kids", runKids},
+        {"longest", runLongest},
+        {"avg", runAvg},
+        {"merge", runMerge},
 
-        {"ransom", run_ransom},
-        {"circle", run_circle},
-        {"valid", run_valid}
+        {"ransom", runRansom},
+        {"circle", runCircle},
+        {"valid", runValid}
     };
 
     if (argc < 2) {

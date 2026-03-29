@@ -23,7 +23,7 @@ bool isValid(string s) {
     return top == -1;
 }
 
-void run_valid() {
+void runValid() {
     cout << (isValid("()") ? "true" : "false") << endl;
     cout << (isValid("(]") ? "true" : "false") << endl;
 }

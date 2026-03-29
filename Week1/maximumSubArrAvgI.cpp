@@ -22,7 +22,7 @@ double findMaxAverage(vector<int>& nums, int k) {
     return (double)max_sum / k;
 }
 
-void run_avg() {
+void runAvg() {
     vector<int> nums = {1,12,-5,-6,50,3};
     cout << findMaxAverage(nums, 4) << endl;
 }

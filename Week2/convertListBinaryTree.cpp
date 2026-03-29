@@ -51,7 +51,7 @@ TreeNode* solve(ListNode* h) {
     return root;
 }
 
-void run_bst() {
+void runBst() {
     vector<int> a = {-10,-3,0,5,9};
     ListNode* h = build(a);
     TreeNode* r = solve(h);

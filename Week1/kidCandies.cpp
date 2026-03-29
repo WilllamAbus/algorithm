@@ -19,7 +19,7 @@ vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
     return result;
 }
 
-void run_kids() {
+void runKids() {
     vector<int> candies = {2,3,5,1,3};
     int extra = 3;
 

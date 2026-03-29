@@ -21,7 +21,7 @@ void mergeSortedArray(vector<int>& nums1, int m,
 }
 
 
-void run_merge() {
+void runMerge() {
     vector<int> a = {1,2,3,0,0,0};
     vector<int> b = {2,5,6};
 

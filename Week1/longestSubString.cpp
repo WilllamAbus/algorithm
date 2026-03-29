@@ -26,6 +26,6 @@ int lengthOfLongestSubstring(string s) {
     return max_len;
 }
 
-void run_longest() {
+void runLongest() {
     cout << lengthOfLongestSubstring("abcabcbb") << endl;
 }

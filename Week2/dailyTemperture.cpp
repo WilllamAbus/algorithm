@@ -17,7 +17,7 @@ vector<int> daily(vector<int>& T) {
     return res;
 }
 
-void run_temp() {
+void runTemp() {
     vector<int> t = {73,74,75,71,69,72,76,73};
     auto r = daily(t);
 

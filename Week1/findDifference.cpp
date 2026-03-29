@@ -10,7 +10,7 @@ char findTheDifference(string s, string t) {
 
     return result;
 }
-void run_find_diff() {
+void runFindDiff() {
     string s = "abcd";
     string t = "abcde";
 

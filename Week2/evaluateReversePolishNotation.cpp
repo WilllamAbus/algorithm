@@ -22,7 +22,7 @@ int eval(vector<string>& tokens) {
     return st.top();
 }
 
-void run_rpn() {
+void runRpn() {
     vector<string> t = {"2","1","+","3","*"};
     cout << eval(t) << "\n";
 }

@@ -24,7 +24,7 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
     return result;
 }
 
-void run_group_anagram() {
+void runGroupAnagram() {
     vector<string> strs = {"eat","tea","tan","ate","nat","bat"};
 
     auto res = groupAnagrams(strs);

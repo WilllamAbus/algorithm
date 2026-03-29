@@ -16,7 +16,7 @@ bool canConstruct(string ransomNote, string magazine) {
     return true;
 }
 
-void run_ransom() {
+void runRansom() {
     cout << (canConstruct("a", "b") ? "true" : "false") << endl;
     cout << (canConstruct("aa", "ab") ? "true" : "false") << endl;
     cout << (canConstruct("aa", "aab") ? "true" : "false") << endl;

@@ -4,11 +4,11 @@
 using namespace std;
 
 // forward declare
-void run_asteroid();
-void run_queue();
-void run_bst();
-void run_temp();
-void run_rpn();
+void runAsteroid();
+void runCircularQueue();
+void runBst();
+void runTemp();
+void runRpn();
 void runQueue();
 void runStack();
 void runMakeGood();
@@ -18,11 +18,11 @@ void runRemoveDuplicates();
 int main(int argc, char* argv[]) {
 
     unordered_map<string, function<void()>> reg = {
-        {"asteroid", run_asteroid},
-        {"queue", run_queue},
-        {"bst", run_bst},
-        {"temp", run_temp},
-        {"rpn", run_rpn},
+        {"asteroid", runAsteroid},
+        {"queue", runCircularQueue},
+        {"bst", runBst},
+        {"temp", runTemp},
+        {"rpn", runRpn},
         {"queueUsingStack", runQueue},
         {"stackUsingQueue", runStack},
         {"makeGood", runMakeGood},
